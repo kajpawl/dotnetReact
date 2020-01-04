@@ -1,20 +1,19 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Domain;
 using MediatR;
 using Persistence;
 
 namespace Application.Activities
 {
-    public class Details
+    public class Delete
     {
-        public class Query : IRequest<Activity>
+        public class Command : IRequest
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Activity>
+        public class Handler : IRequestHandler<Command>
         {
             private readonly DataContext _context;
             public Handler(DataContext context)
@@ -22,12 +21,21 @@ namespace Application.Activities
                 this._context = context;
             }
 
-            public async Task<Activity> Handle(Query request,
+            public async Task<Unit> Handle(Command request,
                 CancellationToken cancellationToken)
             {
                 var activity = await _context.Activities.FindAsync(request.Id);
-                
-                return activity;
+
+                if (activity == null)
+                    throw new Exception("Could not find activity");
+
+                _context.Remove(activity);
+
+                var success = await _context.SaveChangesAsync() > 0;
+
+                if (success) return Unit.Value;
+
+                throw new Exception("Problem saving changes");
             }
         }
     }
