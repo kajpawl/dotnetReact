@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { Container } from "semantic-ui-react";
 import NavBar from "../../features/nav/NavBar";
+import LoadingComponent from "./LoadingComponent";
 import agent from "../api/agent";
 import { IActivity } from "../models/activity";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
@@ -11,6 +12,7 @@ const App = () => {
     null
   );
   const [editMode, setEditMode] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleSelectActivity = (id: string) => {
     setSelectedActivity(activities.filter(a => a.id === id)[0]);
@@ -27,33 +29,40 @@ const App = () => {
       setActivities([...activities, activity]);
       setSelectedActivity(activity);
       setEditMode(false);
-    })
+    });
   };
 
   const handleEditActivity = (activity: IActivity) => {
     agent.Activities.update(activity).then(() => {
-      setActivities([...activities.filter(a => a.id !== activity.id), activity]);
+      setActivities([
+        ...activities.filter(a => a.id !== activity.id),
+        activity
+      ]);
       setSelectedActivity(activity);
       setEditMode(false);
-    })
+    });
   };
 
   const handleDeleteActivity = (id: string) => {
     agent.Activities.delete(id).then(() => {
       setActivities([...activities.filter(a => a.id !== id)]);
-    })
+    });
   };
 
   useEffect(() => {
-    agent.Activities.list().then(response => {
-      let activities: IActivity[] = [];
-      response.forEach((activity) => {
-        activity.date = activity.date.split(".")[0];
-        activities.push(activity);
-      });
-      setActivities(activities);
-    });
+    agent.Activities.list()
+      .then(response => {
+        let activities: IActivity[] = [];
+        response.forEach(activity => {
+          activity.date = activity.date.split(".")[0];
+          activities.push(activity);
+        });
+        setActivities(activities);
+      })
+      .then(() => setLoading(false));
   }, []);
+
+  if (loading) return <LoadingComponent content="Loading activities..." />;
 
   return (
     <Fragment>
