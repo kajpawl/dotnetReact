@@ -24,7 +24,7 @@ namespace Application.Activities
                 CancellationToken cancellationToken)
             {
                 var activities = await _context.Activities.ToListAsync();
-                
+
                 return activities;
             }
         }
