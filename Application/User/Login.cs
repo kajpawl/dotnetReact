@@ -48,7 +48,7 @@ namespace Application.User
 
                 if (result.Succeeded)
                 {
-                    // TODO: generate token
+                    // TODO: generate token 
                     return user;
                 }
 
