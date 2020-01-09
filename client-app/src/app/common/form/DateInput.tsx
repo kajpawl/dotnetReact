@@ -4,9 +4,7 @@ import { DateTimePicker } from "react-widgets";
 import { FieldRenderProps } from "react-final-form";
 import { FormFieldProps } from "semantic-ui-react";
 
-interface IProps
-  extends FieldRenderProps<Date, HTMLInputElement>,
-    FormFieldProps {}
+interface IProps extends FieldRenderProps<Date, HTMLInputElement>, FormFieldProps {}
 
 const DateInput: React.FC<any> = ({
   input,

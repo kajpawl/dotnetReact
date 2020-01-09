@@ -18,9 +18,7 @@ const activityImageTextStyle = {
   color: "white"
 };
 
-const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
-  activity
-}) => {
+const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({ activity }) => {
   return (
     <Segment.Group>
       <Segment basic attached="top" style={{ padding: "0" }}>
@@ -33,11 +31,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
           <Item.Group>
             <Item>
               <Item.Content>
-                <Header
-                  size="huge"
-                  content={activity.title}
-                  style={{ color: "white" }}
-                />
+                <Header size="huge" content={activity.title} style={{ color: "white" }} />
                 <p>{format(activity.date, "eeee do MMMM")}</p>
                 <p>
                   Hosted by <strong>Greg</strong>
@@ -50,12 +44,7 @@ const ActivityDetailedHeader: React.FC<{ activity: IActivity }> = ({
       <Segment clearing attached="bottom">
         <Button color="teal">Join Activity</Button>
         <Button>Cancel attendance</Button>
-        <Button
-          as={Link}
-          to={`/manage/${activity.id}`}
-          color="orange"
-          floated="right"
-        >
+        <Button as={Link} to={`/manage/${activity.id}`} color="orange" floated="right">
           Manage Event
         </Button>
       </Segment>

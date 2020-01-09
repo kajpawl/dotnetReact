@@ -4,12 +4,7 @@ import NavBar from "../../features/nav/NavBar";
 import ActivityDashboard from "../../features/activities/dashboard/ActivityDashboard";
 import ActivityForm from "../../features/activities/form/ActivityForm";
 import { observer } from "mobx-react-lite";
-import {
-  Route,
-  withRouter,
-  RouteComponentProps,
-  Switch
-} from "react-router-dom";
+import { Route, withRouter, RouteComponentProps, Switch } from "react-router-dom";
 import HomePage from "../../features/home/HomePage";
 import NotFound from "./NotFound";
 import ActivityDetails from "../../features/activities/details/ActivityDetails";

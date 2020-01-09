@@ -45,12 +45,7 @@ const ActivityDetailedChat = () => {
 
           <Form reply>
             <Form.TextArea />
-            <Button
-              content="Add Reply"
-              labelPosition="left"
-              icon="edit"
-              primary
-            />
+            <Button content="Add Reply" labelPosition="left" icon="edit" primary />
           </Form>
         </Comment.Group>
       </Segment>

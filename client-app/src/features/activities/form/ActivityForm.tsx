@@ -38,17 +38,9 @@ interface DetailParams {
   id: string;
 }
 
-const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({
-  match,
-  history
-}) => {
+const ActivityForm: React.FC<RouteComponentProps<DetailParams>> = ({ match, history }) => {
   const activityStore = useContext(ActivityStore);
-  const {
-    createActivity,
-    editActivity,
-    submitting,
-    loadActivity
-  } = activityStore;
+  const { createActivity, editActivity, submitting, loadActivity } = activityStore;
 
   const [activity, setActivity] = useState(new ActivityFormValues());
   const [loading, setLoading] = useState(false);
