@@ -1,5 +1,6 @@
 import { IActivity } from "./../models/activity";
 import { IUser, IUserFormValues } from "./../models/user";
+import { IProfile } from "./../models/profile";
 import axios, { AxiosResponse } from "axios";
 import { history } from "../..";
 import { toast } from "react-toastify";
@@ -78,7 +79,12 @@ const User = {
   register: (user: IUserFormValues): Promise<IUser> => requests.post(`/user/register`, user)
 };
 
+const Profiles = {
+  get: (username: string): Promise<IProfile> => requests.get(`/profiles/${username}`)
+};
+
 export default {
   Activities,
-  User
+  User,
+  Profiles
 };
