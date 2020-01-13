@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Tab } from "semantic-ui-react";
 import ProfilePhotos from "./ProfilePhotos";
+import ProfileDescription from "./ProfileDescription";
+import { RootStoreContext } from "../../app/stores/rootStore";
 
 const panes = [
-  { menuItem: "About", render: () => <Tab.Pane>About content</Tab.Pane> },
+  { menuItem: "About", render: () => <ProfileDescription /> },
   { menuItem: "Photos", render: () => <ProfilePhotos /> },
   { menuItem: "Activities", render: () => <Tab.Pane>Activities content</Tab.Pane> },
   { menuItem: "Followers", render: () => <Tab.Pane>Followers content</Tab.Pane> },
@@ -11,14 +13,9 @@ const panes = [
 ];
 
 const ProfileContent = () => {
-  return (
-    <Tab
-      menu={{ fluid: true, vertical: true }}
-      menuPosition="right"
-      panes={panes}
-      activeIndex={1}
-    />
-  );
+  const rootStore = useContext(RootStoreContext);
+  const { profile } = rootStore.profileStore;
+  return <Tab menu={{ fluid: true, vertical: true }} menuPosition="right" panes={panes} />;
 };
 
 export default ProfileContent;
