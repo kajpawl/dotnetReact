@@ -77,3 +77,5 @@ _[Ss]cripts
 
 appsettings.json
 *.db
+
+wwwroot
