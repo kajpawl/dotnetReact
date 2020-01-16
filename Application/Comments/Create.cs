@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,6 +34,7 @@ namespace Application.Comments
                 CancellationToken cancellationToken)
             {
                 var activity = await _context.Activities.FindAsync(request.ActivityId);
+                
                 if (activity == null)
                     throw new RestException(HttpStatusCode.NotFound, new { Activity = "Not found" });
 

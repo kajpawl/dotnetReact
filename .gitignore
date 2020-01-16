@@ -79,3 +79,4 @@ appsettings.json
 *.db
 
 wwwroot
+publish

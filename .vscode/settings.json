@@ -1,0 +1,30 @@
+{
+    "deploy.reloaded": {
+        "packages": [
+            {
+                "name": "Version 1.0.0",
+                "description": "Package version 1.0.0",
+                "files": [
+                    "API/publish/**"
+                ]
+            }
+        ],
+        "targets": [
+            {
+                "type": "sftp",
+                "name": "Linux",
+                "description": "SFTP folder",
+                "host": "111.11.111.11",
+                "port": 22,
+                "user": "root",
+                "password": "yourpassword",
+                "dir": "/var/reactivities",
+                "mappings": {
+                    "api/publish/**": "/"
+                }
+            }
+        ]
+    },
+    "appService.defaultWebAppToDeploy": "/subscriptions/33109004-9cc5-434e-b0d4-c3fdb1e2ae56/resourceGroups/dotnetReactResourceGroup/providers/Microsoft.Web/sites/dotnetReactKP",
+    "appService.deploySubpath": "publish"
+}
